@@ -12,8 +12,8 @@ do
         echo "Scanning " $software
         echo $software >> users.txt
         echo "------------------------------------------------" >> users.txt
-        grep -rli data/ -e "$software" |  awk '{print substr($1,6)}' >> users.txt 
+        grep -rli all_files/ -e "$software" |  awk '{print substr($1,6)}' >> users.txt 
         echo "Gathering evidences..."
-        grep -irn data/ -e "$software" |   awk -v software="$software" '{split(substr($0,6),a,":"); print a[1],",", software, "," a[2]}' >> occurence-atrifact.csv 
+        grep -irn all_files/ -e "$software" |   awk -v software="$software" '{split(substr($0,6),a,":"); print a[1],",", software, "," a[2]}' >> occurence-atrifact.csv 
     fi
 done < inputs.txt
